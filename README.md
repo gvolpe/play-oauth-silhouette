@@ -1,6 +1,10 @@
 play-oauth-silhouette
 ====================
 
+## Live Demo
+
+You can see a live demo at [Heroku](https://play-oauth.herokuapp.com).
+
 ## Authorizations
 
 #### Google
