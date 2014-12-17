@@ -1,7 +1,23 @@
-play-auth-silhouette
+play-oauth-silhouette
 ====================
 
-**In order to perform authorizations with Google+, make sure you have enabled Google+ API and Contacts API at [Google Console Developer](https://console.developers.google.com/)**
+## Authorizations
+
+#### Google
+
+Create a Client ID at [Google Console Developer](https://console.developers.google.com/). Ensure the Project Name is equal to the Product Name (Project --> APIs and Authentication --> Authorization Screen --> Product Name)
+
+- In order to perform authorizations with Google+, make sure you have enabled Google+ API and Contacts API.
+
+#### Facebook
+
+Create an Application at [Facebook Developer](https://developers.facebook.com/).
+- Set a valid contact email at Settings.
+- Make your application available to the general public at Status and Review.
+
+#### Twitter
+
+TODO
 
 ## Template
 
@@ -24,6 +40,6 @@ Consulate the [Silhouette wiki](https://github.com/mohiva/play-silhouette/wiki) 
 
 See https://typesafe.com/activator/template/play-silhouette-seed
 
-# License
+## License
 
 The code is licensed under [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0).
