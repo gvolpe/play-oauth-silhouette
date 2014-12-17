@@ -26,18 +26,18 @@ Register your application at [LinkedIn Developer](https://www.linkedin.com/secur
 
 TODO
 
-## Template
-
-This project was created starting from The Silhouette Seed project Activator template which shows how [Silhouette](https://github.com/mohiva/play-silhouette) can be implemented in a Play Framework application. It's a starting point which can be extended to fit your needs.
-
 ## Features
 
 * Sign Up
 * Sign In (Credentials)
-* Social Auth (Facebook, Google+, Twitter)
+* Social Auth (LinkedIn, Google+, Twitter, Facebook)
 * Dependency Injection with Guice
 * Publishing Events
 * Avatar service
+
+## Template
+
+This project was created starting from The Silhouette Seed project Activator template which shows how [Silhouette](https://github.com/mohiva/play-silhouette) can be implemented in a Play Framework application. It's a starting point which can be extended to fit your needs.
 
 ## Documentation
 
