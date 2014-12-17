@@ -6,7 +6,6 @@ play-oauth-silhouette
 #### Google
 
 Create a Client ID at [Google Console Developer](https://console.developers.google.com/). Ensure the Project Name is equal to the Product Name (Project --> APIs and Authentication --> Authorization Screen --> Product Name)
-
 - In order to perform authorizations with Google+, make sure you have enabled Google+ API and Contacts API.
 
 #### Facebook
@@ -14,6 +13,10 @@ Create a Client ID at [Google Console Developer](https://console.developers.goog
 Create an Application at [Facebook Developer](https://developers.facebook.com/).
 - Set a valid contact email at Settings.
 - Make your application available to the general public at Status and Review.
+
+#### LinkedIn
+
+Register your application at [LinkedIn Developer](https://www.linkedin.com/secure/developer).
 
 #### Twitter
 

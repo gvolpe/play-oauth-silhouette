@@ -1,21 +1,21 @@
 package utils.di
 
+import com.google.inject.{AbstractModule, Provides}
+import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
+import com.mohiva.play.silhouette.contrib.services._
+import com.mohiva.play.silhouette.contrib.utils._
+import com.mohiva.play.silhouette.core.providers._
+import com.mohiva.play.silhouette.core.providers.oauth1.TwitterProvider
+import com.mohiva.play.silhouette.core.providers.oauth2._
+import com.mohiva.play.silhouette.core.services._
+import com.mohiva.play.silhouette.core.utils._
+import com.mohiva.play.silhouette.core.{Environment, EventBus}
+import models.User
+import models.daos._
+import models.services.{UserService, UserServiceImpl}
+import net.codingwell.scalaguice.ScalaModule
 import play.api.Play
 import play.api.Play.current
-import com.google.inject.{ Provides, AbstractModule }
-import net.codingwell.scalaguice.ScalaModule
-import com.mohiva.play.silhouette.core.{EventBus, Environment}
-import com.mohiva.play.silhouette.core.utils._
-import com.mohiva.play.silhouette.core.services._
-import com.mohiva.play.silhouette.core.providers._
-import com.mohiva.play.silhouette.core.providers.oauth2._
-import com.mohiva.play.silhouette.core.providers.oauth1._
-import com.mohiva.play.silhouette.contrib.utils._
-import com.mohiva.play.silhouette.contrib.services._
-import com.mohiva.play.silhouette.contrib.daos.DelegableAuthInfoDAO
-import models.services.{UserService, UserServiceImpl}
-import models.daos._
-import models.User
 
 /**
  * The Guice module which wires all Silhouette dependencies.
@@ -54,7 +54,8 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     credentialsProvider: CredentialsProvider,
     facebookProvider: FacebookProvider,
     googleProvider: GoogleProvider,
-    twitterProvider: TwitterProvider): Environment[User, CachedCookieAuthenticator] = {
+    twitterProvider: TwitterProvider,
+    linkedInProvider: LinkedInProvider): Environment[User, CachedCookieAuthenticator] = {
 
     Environment[User, CachedCookieAuthenticator](
       userService,
@@ -63,7 +64,8 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
         credentialsProvider.id -> credentialsProvider,
         facebookProvider.id -> facebookProvider,
         googleProvider.id -> googleProvider,
-        twitterProvider.id -> twitterProvider
+        twitterProvider.id -> twitterProvider,
+        linkedInProvider.id -> linkedInProvider
       ),
       eventBus
     )
@@ -189,4 +191,23 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
 
     TwitterProvider(cacheLayer, httpLayer, new PlayOAuth1Service(settings), settings)
   }
+
+  /**
+   * Provides the Twitter provider.
+   *
+   * @param cacheLayer The cache layer implementation.
+   * @param httpLayer The HTTP layer implementation.
+   * @return The Twitter provider.
+   */
+  @Provides
+  def provideLinkedinProvider(cacheLayer: CacheLayer, httpLayer: HTTPLayer): LinkedInProvider = {
+    LinkedInProvider(cacheLayer, httpLayer, OAuth2Settings(
+      authorizationURL = Play.configuration.getString("silhouette.linkedin.authorizationUrl").get,
+      accessTokenURL = Play.configuration.getString("silhouette.linkedin.accessTokenUrl").get,
+      redirectURL = Play.configuration.getString("silhouette.linkedin.redirectURL").get,
+      clientID = Play.configuration.getString("silhouette.linkedin.clientId").get,
+      clientSecret = Play.configuration.getString("silhouette.linkedin.clientSecret").get
+    ))
+  }
+
 }
